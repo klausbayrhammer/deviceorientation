@@ -14,7 +14,7 @@
 
     var addComand = _.throttle(function(cmd) {
         document.getElementById('command').innerHTML =   	document.getElementById('command').innerHTML + ' <br/>' + cmd;
-    }, 500, {trailing: false});
+    }, 10, {trailing: false});
     addComand('start');
 
     var gn = new GyroNorm();
@@ -23,18 +23,8 @@
         frequency:5,					// ( How often the object sends the values - milliseconds )
     }).then(function(){
         gn.start(function(data){
-            if(data.do.beta > 20) {
-                addComand('up');
-            }
-            if(data.do.beta < -8) {
-                addComand('down');
-            }
-            if(data.dm.gamma < -100) {
-                addComand('right')
-            }
-            if(data.dm.gamma > 100) {
-                addComand('left')
-            }
+            addCommand(JSON.stringify(data.dm))
+    
           
         });
     }).catch(function(e){
