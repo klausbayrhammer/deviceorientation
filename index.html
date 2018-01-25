@@ -20,10 +20,9 @@
     var gn = new GyroNorm();
 
     gn.init( {
-        frequency:10,					// ( How often the object sends the values - milliseconds )
+        frequency:5,					// ( How often the object sends the values - milliseconds )
     }).then(function(){
         gn.start(function(data){
-            addComand(JSON.stringify(data.dm));
             if(data.do.beta > 20) {
                 addComand('up');
             }
