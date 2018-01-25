@@ -19,7 +19,7 @@
     var gn = new GyroNorm();
 
     gn.init( {
-        frequency:50,					// ( How often the object sends the values - milliseconds )
+        frequency:200,					// ( How often the object sends the values - milliseconds )
     }).then(function(){
         gn.start(function(data){
             addCommand(JSON.stringify(data.dm))
