@@ -19,7 +19,9 @@
 
     var gn = new GyroNorm();
 
-    gn.init().then(function(){
+    gn.init( {
+        frequency:10,					// ( How often the object sends the values - milliseconds )
+    }).then(function(){
         gn.start(function(data){
             addComand(JSON.stringify(data.dm));
             if(data.do.beta > 20) {
@@ -27,6 +29,12 @@
             }
             if(data.do.beta < -20) {
                 addComand('down');
+            }
+            if(data.dm.gamma < -100) {
+                addComand('left')
+            }
+            if(data.dm.gamma > 100) {
+                addComand('right')
             }
             // data.do.alpha	( deviceorientation event alpha value )
             // data.do.beta		( deviceorientation event beta value )
