@@ -14,7 +14,7 @@
 
     var addComand = _.throttle(function(cmd) {
         document.getElementById('command').innerHTML =   	document.getElementById('command').innerHTML + ' <br/>' + cmd;
-    }, 2000);
+    }, 2000, {trailing: false});
     addComand('start');
 
     var gn = new GyroNorm();
