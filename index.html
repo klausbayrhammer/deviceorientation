@@ -21,9 +21,19 @@
     gn.init( {
         frequency:200,					// ( How often the object sends the values - milliseconds )
     }).then(function(){
-        gn.start(function(data){
-            addCommand(JSON.stringify(data.dm))
-    
+        var multiplier = /Android/i.test(navigator.userAgent) ? 100 : 1;
+        if(data.dm.alpha * multiplier > 100) {
+            addComand('up');
+        }
+        if(data.dm.alpha * multiplier < -100) {
+            addComand('down');
+        }
+        if(data.dm.gamma * multiplier < -100) {
+            addComand('right')
+        }
+        if(data.dm.gamma * multiplier > 100) {
+            addComand('left')
+        }
           
         });
     }).catch(function(e){
