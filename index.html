@@ -14,7 +14,7 @@
 
     var addComand = _.throttle(function(cmd) {
         document.getElementById('command').innerHTML =   	document.getElementById('command').innerHTML + ' <br/>' + cmd;
-    }, 1000);
+    }, 500);
     addComand('start');
 
     var gn = new GyroNorm();
@@ -30,10 +30,10 @@
                 addComand('down');
             }
             if(data.dm.gamma < -100) {
-                addComand('left')
+                addComand('right')
             }
             if(data.dm.gamma > 100) {
-                addComand('right')
+                addComand('left')
             }
             // data.do.alpha	( deviceorientation event alpha value )
             // data.do.beta		( deviceorientation event beta value )
